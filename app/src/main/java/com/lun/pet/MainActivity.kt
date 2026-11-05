@@ -17,7 +17,8 @@ class MainActivity : Activity() {
   layout.addView(TextView(this).apply { text = "伦警官桌宠 · v0.1\n\n点击伦：随机对话\n拖动伦：移动位置\n长按伦：隐藏桌宠\n\n首次使用请授权‘显示在其他应用上层’。"; textSize = 18f })
   val start = Button(this).apply { text = "召唤伦警官"; setOnClickListener { startPet() } }
   val stop = Button(this).apply { text = "让伦下班"; setOnClickListener { stopService(Intent(this@MainActivity, PetService::class.java)) } }
-  layout.addView(start); layout.addView(stop); setContentView(layout)
+  val api = Button(this).apply { text = "AI API 设置"; setOnClickListener { startActivity(Intent(this@MainActivity, ApiSettingsActivity::class.java)) } }
+  layout.addView(start); layout.addView(stop); layout.addView(api); setContentView(layout)
   if (Build.VERSION.SDK_INT >= 33 && checkSelfPermission(Manifest.permission.POST_NOTIFICATIONS) != android.content.pm.PackageManager.PERMISSION_GRANTED) requestPermissions(arrayOf(Manifest.permission.POST_NOTIFICATIONS), 1)
  }
  private fun startPet() {
